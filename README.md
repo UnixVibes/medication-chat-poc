@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Medical Chat Assistant
 
-## Getting Started
+A Next.js application that provides a medical consultation chat interface powered by the Llama3-OpenBioLLM-70B model from Hugging Face.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Patient Chat Interface**: Clean, intuitive chat interface for patients to describe symptoms
+- **AI Medical Assistant**: Powered by Llama3-OpenBioLLM-70B for medical consultations
+- **Medical Safety Guardrails**: Built-in safety measures and emergency detection
+- **Diagnosis Summarization**: Automatic generation of symptoms, possible conditions, and recommendations
+- **Medical Disclaimers**: Clear disclaimers that this is for information only, not diagnosis
+- **Emergency Detection**: Automatic detection of emergency keywords with immediate guidance
+
+## Safety Features
+
+- Emergency keyword detection (chest pain, difficulty breathing, etc.)
+- Medical disclaimers prominently displayed
+- Recommendations to consult healthcare professionals
+- No specific medication dosages or prescriptions
+- Urgency level assessment
+- Clear boundaries between AI assistance and medical diagnosis
+
+## Setup
+
+1. **Clone and Install Dependencies**:
+   ```bash
+   cd medical-chat-app
+   npm install
+   ```
+
+2. **Environment Setup**:
+   - Copy `.env.local` and add your Hugging Face API key
+   - Get a free API key from: https://huggingface.co/settings/tokens
+   ```bash
+   HUGGINGFACE_API_KEY=your_actual_api_key_here
+   ```
+
+3. **Run Development Server**:
+   ```bash
+   npm run dev
+   ```
+
+4. **Open Application**:
+   Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── api/
+│   │   ├── chat/route.ts          # Chat API endpoint
+│   │   └── summary/route.ts       # Summary generation API
+│   └── page.tsx                   # Main application page
+├── components/
+│   └── ChatInterface.tsx          # Main chat component
+├── lib/
+│   ├── huggingface-client.ts      # Hugging Face API integration
+│   └── medical-prompts.ts         # Medical prompts and guardrails
+└── types/
+    └── chat.ts                    # TypeScript types
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Medical Model
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This application uses the **Llama3-OpenBioLLM-70B** model from Hugging Face:
+- Model ID: `aaditya/Llama3-OpenBioLLM-70B`
+- Specialized for medical and biomedical tasks
+- Provides medical information while maintaining safety guardrails
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Medical Guardrails
 
-## Learn More
+The application includes several safety measures:
 
-To learn more about Next.js, take a look at the following resources:
+1. **Emergency Detection**: Automatic detection of emergency symptoms
+2. **Medical Disclaimers**: Clear warnings about AI limitations
+3. **Professional Consultation**: Regular recommendations to see healthcare providers
+4. **No Prescriptions**: Never provides specific medications or dosages
+5. **Symptom Urgency**: Assesses urgency levels (low/medium/high)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Important Disclaimers
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+⚠️ **Medical Disclaimer**: This AI assistant provides general health information only. Always consult a qualified healthcare professional for medical advice, diagnosis, or treatment.
 
-## Deploy on Vercel
+⚠️ **Emergency**: If you're experiencing a medical emergency, call emergency services immediately.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+⚠️ **Not a Doctor**: This application is not a substitute for professional medical advice, diagnosis, or treatment.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Development
+
+- Built with Next.js 15 and TypeScript
+- Styled with Tailwind CSS
+- Icons from Lucide React
+- Hugging Face Inference API for model access
+
+## License
+
+This project is for educational and demonstration purposes only.
